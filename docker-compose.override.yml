@@ -4,6 +4,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionString__Database=Server=catalogdb;Port=65432;Database=CatalogDb;User Id=postgres;Password=postgres;
+      - ConnectionStrings__ElasticSearch=http://elasticsearch:9200
     ports:
       - "6000:8080"
       - "6001:8081"
