@@ -1,0 +1,42 @@
+name: Build and deploy ASP.NET Core app to Azure Web App
+
+on:
+  push:
+    branches: [ "develop" ]
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: eshop-microservices  # Set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'    # Set this to the path to your web app project
+  DOTNET_VERSION: '8.0.x'           # .NET version
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Build with dotnet
+      run: |
+        dotnet restore
+        dotnet build --configuration Release --no-restore
+        dotnet publish -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/publish
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/publish
