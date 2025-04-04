@@ -1,0 +1,274 @@
+[
+  {
+    "Id": "0195fcce-5326-4b0f-a52d-47604075dba0",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcd0-097b-481c-aa5b-1e3c2361ed39",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcd1-1907-4fd6-b156-ee403c61165b",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcd2-3940-4186-95ea-95e70c43decf",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcd2-ecbd-4bf9-bd72-9568e5ace1d8",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcde-ffba-4885-9f6f-dac8a8c57486",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fce8-ae37-41a4-9731-6ea17d6a1af3",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fce9-b87f-4519-8c9c-be9e7d108027",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcea-c6b0-438a-82dd-6d46995fef84",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcf5-45fe-4336-8fb9-82be223749c6",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcf7-32ed-41d0-870f-84efeb80a09e",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcf8-f950-42de-be59-b57d5ef30656",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcfb-64b0-42a7-a838-9ea78824bfa0",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fcfc-5014-460d-8f33-296d7ae85843",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fd03-75b8-4d0c-8c56-438a88f2bbc3",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fd04-7bca-4286-941d-c61fef2122c5",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fd05-97f5-4c09-a6eb-f95eb8a57127",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "c1", "c2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fd39-2080-42b3-bdf1-b43816003eb6",
+    "Name": "New Product Test",
+    "Price": 199.0,
+    "Category": [ "z1", "d2" ],
+    "ImageFile": null,
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fd74-1583-440b-b74c-1beac3ac5482",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fd76-e44d-4dc2-8678-baadeca5dbd1",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fd93-6156-4049-9cc8-325337ee770a",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fe2c-c518-4c9d-bf4a-83d5ab80ea96",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": null,
+    "Description": null
+  },
+  {
+    "Id": "0195fe9b-8094-434b-8af4-8b523463c4fc",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fe9b-f8ff-4ab9-a306-c67802e86238",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fe9c-55c0-4846-ab36-808b7a0ce2e8",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fe9c-7908-4802-af05-4a3412b973e6",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fea1-eafc-4ffa-8590-7924ccb4cf13",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fea2-b6f9-4eb8-b224-388c5d972e74",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fea8-d105-4255-a256-64605273d6a8",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195fea9-4e49-4839-81c0-fdecd27a7ca6",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195feae-b6a6-4b3c-9b3a-d5508643de19",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195feaf-96ce-40a5-94bd-1d76d1f516f5",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195feb6-c61b-4c24-89a4-ce1c53b606e4",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  },
+  {
+    "Id": "0195feb7-f1ae-4332-b62a-b1554b316cf3",
+    "Name": "New Product A",
+    "Price": 199.0,
+    "Category": [ "b1", "d2" ],
+    "ImageFile": "ImageFile Product A",
+    "Description": "Description Product A"
+  }
+]
