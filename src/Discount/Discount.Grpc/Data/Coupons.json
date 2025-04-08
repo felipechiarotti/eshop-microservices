@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "ProductName": "Iphone X",
+    "Description": "Iphone Discount",
+    "Amount": 100
+  },
+  {
+    "Id": 2,
+    "ProductName": "Samsung S25",
+    "Description": "S25 Discount",
+    "Amount": 400
+  }
+]

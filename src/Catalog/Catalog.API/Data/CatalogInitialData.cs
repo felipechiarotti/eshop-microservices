@@ -10,11 +10,10 @@ public class CatalogInitialData(ILogger<CatalogInitialData> logger) : IInitialDa
 
             if (await session.Query<Product>().AnyAsync())
                 return;
-            var productsJson = await Assembly.GetExecutingAssembly()
-                .ReadEmbeddedFileAsync("Products.json");
+            var products = await Assembly.GetExecutingAssembly()
+                .ReadEmbeddedFileAsync<IEnumerable<Product>>("Products.json");
 
-            var products = JsonSerializer.Deserialize<List<Product>>(productsJson);
-            session.Store<Product>(products);
+            session.Store(products!);
             await session.SaveChangesAsync();
         }
         catch (Exception ex)

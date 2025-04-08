@@ -5,11 +5,11 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - ConnectionStrings__Database=Server=catalogdb;Port=5432;Database=CatalogDb;User Id=postgres;Password=postgres;
+      - ConnectionStrings__Postgres=Server=catalogdb;Port=5432;Database=CatalogDb;User Id=postgres;Password=postgres;
       - ConnectionStrings__ElasticSearch=http://elasticsearch:9200
     ports:
       - "6000:8080"
-      - "6001:8081"
+      - "6060:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -23,12 +23,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - ConnectionStrings__Database=Server=basketdb;Port=5432;Database=BasketDb;User Id=postgres;Password=postgres;
+      - ConnectionStrings__Postgres=Server=basketdb;Port=5432;Database=BasketDb;User Id=postgres;Password=postgres;
       - ConnectionStrings__ElasticSearch=http://elasticsearch:9200
       - ConnectionStrings__Redis=distributedcache:6379
     ports:
-      - "7000:8080"
-      - "7001:8081"
+      - "6001:8080"
+      - "6061:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -36,6 +36,23 @@ services:
         - basketdb
         - elasticsearch
         - distributedcache
+
+  discount.grpc:
+    container_name: discount.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__ElasticSearch=http://elasticsearch:9200
+    ports:
+      - "6002:8080"
+      - "6062:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    depends_on:
+      - elasticsearch
+
 
   catalogdb:
    container_name: catalogdb

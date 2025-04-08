@@ -20,37 +20,47 @@ namespace BuildingBlocks;
 public static class DependencyInjectionExtensions
 {
 
-    public static IHostApplicationBuilder AddCore(this WebApplicationBuilder builder)
+    public static IHostApplicationBuilder AddCore(this WebApplicationBuilder builder, bool httpEnabled = true)
     {
         builder.Host.UseSerilog(SeriLogger.Configure);
         builder.Services.AddMediatr();
-        builder.Services.AddSwagger();
+
         builder.Services.AddCustomHealthCheck(builder.Configuration);
-        builder.Services.AddCarterWithAssemblies();
-        builder.Services.AddHttpLogging(options =>
+
+        if (httpEnabled)
         {
-            options.CombineLogs = true;
-            options.LoggingFields =
-                HttpLoggingFields.RequestQuery
-                | HttpLoggingFields.RequestMethod
-                | HttpLoggingFields.RequestPath
-                | HttpLoggingFields.RequestBody
-                | HttpLoggingFields.ResponseStatusCode
-                | HttpLoggingFields.ResponseBody
-                | HttpLoggingFields.Duration;
-        });
-        builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+            builder.Services.AddCarterWithAssemblies();
+            builder.Services.AddSwagger();
+            builder.Services.AddHttpLogging(options =>
+            {
+                options.CombineLogs = true;
+                options.LoggingFields =
+                    HttpLoggingFields.RequestQuery
+                    | HttpLoggingFields.RequestMethod
+                    | HttpLoggingFields.RequestPath
+                    | HttpLoggingFields.RequestBody
+                    | HttpLoggingFields.ResponseStatusCode
+                    | HttpLoggingFields.ResponseBody
+                    | HttpLoggingFields.Duration;
+            });
+            builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+        }
+
         return builder;
     }
 
-    public static IApplicationBuilder UseCore(this WebApplication app)
+    public static IApplicationBuilder UseCore(this WebApplication app, bool httpEnabled = true)
     {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-        app.UseHttpLogging();
-        app.UseExceptionHandler(opt => { });
+        if (httpEnabled)
+        {
+            app.MapCarter();
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            app.UseHttpLogging();
+            app.UseExceptionHandler(opt => { });
+        }
+
         app.UseCustomHealthCheck();
-        app.MapCarter();
         return app;
     }
     public static IServiceCollection AddMediatr(this IServiceCollection services)
@@ -86,7 +96,7 @@ public static class DependencyInjectionExtensions
     {
         services.AddMarten(options =>
         {
-            options.Connection(configuration.GetConnectionString("Database")!);
+            options.Connection(configuration.GetConnectionString("Postgres")!);
             if (customOptions is not null)
             {
                 customOptions(options);
@@ -131,23 +141,29 @@ public static class DependencyInjectionExtensions
 
     public static IServiceCollection AddCustomHealthCheck(this IServiceCollection services, IConfiguration configuration)
     {
-        // Add your building blocks dependencies here
         var healthCheck = services.AddHealthChecks();
-        var pgConnection = configuration.GetConnectionString("Database");
+        var pgConnection = configuration.GetConnectionString("Postgres");
         var redisConnection = configuration.GetConnectionString("Redis");
+        var sqliteConnection = configuration.GetConnectionString("Sqlite");
+        var elasticConnection = configuration.GetConnectionString("Elasticsearch");
 
         if (!string.IsNullOrEmpty(pgConnection))
-            healthCheck.AddNpgSql(configuration.GetConnectionString("Database")!);
+            healthCheck.AddNpgSql(configuration.GetConnectionString("Postgres")!);
 
         if (!string.IsNullOrEmpty(redisConnection))
             healthCheck.AddRedis(redisConnection);
+
+        if (!string.IsNullOrEmpty(sqliteConnection))
+            healthCheck.AddSqlite(sqliteConnection);
+
+        if (!string.IsNullOrEmpty(elasticConnection))
+            healthCheck.AddElasticsearch(elasticConnection);
 
         return services;
     }
 
     public static IApplicationBuilder UseCustomHealthCheck(this IApplicationBuilder app)
     {
-        // Add your building blocks dependencies here
         app.UseHealthChecks("/health",
             new HealthCheckOptions
             {
