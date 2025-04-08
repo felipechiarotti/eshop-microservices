@@ -23,7 +23,7 @@ public static class SeriLogger
         {
             configuration.WriteTo.Elasticsearch(new(new Uri(elasticSearchConnectionString))
             {
-                IndexFormat = $"applogs-{Assembly.GetEntryAssembly()!.GetName().Name!.ToLower().Replace(".", "-")}-{context.HostingEnvironment.EnvironmentName?.ToLower().Replace(".", "-")}-logs-{DateTime.UtcNow:yyyy-MM}",
+                IndexFormat = $"{Assembly.GetEntryAssembly()!.GetName().Name!.ToLower().Replace(".", "-")}-{context.HostingEnvironment.EnvironmentName?.ToLower().Replace(".", "-")}-logs-{DateTime.UtcNow:yyyy-MM}",
                 AutoRegisterTemplate = true,
                 NumberOfShards = 2,
                 NumberOfReplicas = 1

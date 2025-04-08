@@ -1,9 +1,14 @@
 ﻿global using BuildingBlocks;
 global using BuildingBlocks.CQRS;
 global using BuildingBlocks.Exceptions;
+global using BuildingBlocks.Util;
 global using Carter;
+global using Catalog.API.Data;
 global using Catalog.API.Models;
 global using FluentValidation;
 global using Mapster;
 global using Marten;
+global using Marten.Schema;
 global using MediatR;
+global using System.Reflection;
+global using System.Text.Json;

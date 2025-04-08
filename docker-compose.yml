@@ -5,20 +5,28 @@ services:
       context: .
       dockerfile: src/Catalog/Catalog.API/Dockerfile
 
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: src/Basket/Basket.API/Dockerfile
+
   catalogdb:
-   container_name: catalogdb
    image: postgres
 
+  basketdb:
+   image: postgres
+
+  distributedcache:
+      image: redis
+
   elasticsearch:
-    container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
 
   kibana:
-    container_name: kibana
     image: docker.elastic.co/kibana/kibana:8.9.0
-
-
 
 volumes:
  postgres_catalog:
+ postgres_basket:
  elastic_search_data:   

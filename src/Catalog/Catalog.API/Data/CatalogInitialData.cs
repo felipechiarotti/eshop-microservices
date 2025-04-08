@@ -1,9 +1,4 @@
-﻿using BuildingBlocks.Util;
-using Marten.Schema;
-using System.Reflection;
-using System.Text.Json;
-
-namespace Catalog.API.Data;
+﻿namespace Catalog.API.Data;
 
 public class CatalogInitialData(ILogger<CatalogInitialData> logger) : IInitialData
 {

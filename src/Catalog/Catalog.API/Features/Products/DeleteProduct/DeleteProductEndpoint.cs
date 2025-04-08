@@ -1,6 +1,4 @@
-﻿using Catalog.API.Features.Products.UpdateProduct;
-
-namespace Catalog.API.Features.Products.DeleteProduct;
+﻿namespace Catalog.API.Features.Products.DeleteProduct;
 
 
 public record DeleteProductResponse(bool IsSuccess);
@@ -15,7 +13,7 @@ internal class DeleteProductEndpoint : ICarterModule
             return Results.Ok(response);
         })
         .WithName("DeleteProduct")
-        .Produces<UpdateProductResponse>(StatusCodes.Status200OK)
+        .Produces<DeleteProductResponse>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .WithSummary("Delete Product")
         .WithDescription("Delete Product");

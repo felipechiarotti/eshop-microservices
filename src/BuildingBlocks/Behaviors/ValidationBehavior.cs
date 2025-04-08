@@ -1,9 +1,8 @@
 ﻿using FluentValidation;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace BuildingBlocks.Behaviors;
-public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators, ILogger<TRequest> logger)
+public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull, IRequest<TResponse>
     where TResponse : notnull

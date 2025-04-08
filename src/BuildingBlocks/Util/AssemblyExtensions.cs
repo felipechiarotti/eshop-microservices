@@ -3,7 +3,6 @@
 namespace BuildingBlocks.Util;
 public static class AssemblyExtensions
 {
-
     public static async Task<string> ReadEmbeddedFileAsync(this Assembly assembly, string fileName)
     {
         var resourceName = assembly.GetManifestResourceNames()
