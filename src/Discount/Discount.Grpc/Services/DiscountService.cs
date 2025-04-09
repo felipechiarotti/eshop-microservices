@@ -32,13 +32,13 @@ public class DiscountService(DiscountContext dbContext, ILogger<DiscountService>
         var coupon = request.Coupon.Adapt<Coupon>();
         if (coupon is null)
             throw new RpcException(new Status(StatusCode.InvalidArgument, "Coupon is null"));
-        dbContext.Coupons.Add(coupon);
+
+        await dbContext.Coupons.AddAsync(coupon);
         await dbContext.SaveChangesAsync();
 
         logger.LogInformation("Coupon created with ProductName '{ProductName}: {@Coupon}", coupon.ProductName, coupon);
 
         return coupon.Adapt<CouponModel>();
-
     }
 
     public override async Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)

@@ -1,4 +1,5 @@
 using BuildingBlocks;
+using Discount.Grpc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,22 @@ builder.Services.AddRedis(builder.Configuration);
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
+
+var discountServiceClient = builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(opts =>
+{
+    opts.Address = new Uri(builder.Configuration["Grpc:DiscountUrl"]!);
+});
+
+if (builder.Environment.IsDevelopment())
+{
+    discountServiceClient.ConfigurePrimaryHttpMessageHandler(() =>
+    {
+        return new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+    });
+}
 
 var app = builder.Build();
 
