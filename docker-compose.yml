@@ -17,6 +17,18 @@ services:
       context: .
       dockerfile: src/Discount/Discount.Grpc/Dockerfile
 
+  ordering.api:
+    image: ${DOCKER_REGISTRY-}orderingapi
+    build:
+      context: .
+      dockerfile: src/Ordering/Ordering.API/Dockerfile
+
+  healthcheck.web:
+    image: ${DOCKER_REGISTRY-}healthcheckweb
+    build:
+      context: .
+      dockerfile: src/HealthCheck/HealthCheck.Web/Dockerfile
+
   catalogdb:
    image: postgres
 

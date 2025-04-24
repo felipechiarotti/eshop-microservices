@@ -31,18 +31,7 @@ public static class DependencyInjectionExtensions
         {
             builder.Services.AddCarterWithAssemblies();
             builder.Services.AddSwagger();
-            builder.Services.AddHttpLogging(options =>
-            {
-                options.CombineLogs = true;
-                options.LoggingFields =
-                    HttpLoggingFields.RequestQuery
-                    | HttpLoggingFields.RequestMethod
-                    | HttpLoggingFields.RequestPath
-                    | HttpLoggingFields.RequestBody
-                    | HttpLoggingFields.ResponseStatusCode
-                    | HttpLoggingFields.ResponseBody
-                    | HttpLoggingFields.Duration;
-            });
+            builder.Services.AddHttpLogs();
             builder.Services.AddExceptionHandler<CustomExceptionHandler>();
         }
 
@@ -63,22 +52,38 @@ public static class DependencyInjectionExtensions
         app.UseCustomHealthCheck();
         return app;
     }
+
+    public static IServiceCollection AddHttpLogs(this IServiceCollection services)
+    {
+        services.AddHttpLogging(options =>
+        {
+            options.CombineLogs = true;
+            options.LoggingFields =
+                HttpLoggingFields.RequestQuery
+                | HttpLoggingFields.RequestMethod
+                | HttpLoggingFields.RequestPath
+                | HttpLoggingFields.RequestBody
+                | HttpLoggingFields.ResponseStatusCode
+                | HttpLoggingFields.ResponseBody
+                | HttpLoggingFields.Duration;
+        });
+        return services;
+    }
     public static IServiceCollection AddMediatr(this IServiceCollection services)
     {
-        // Add your building blocks dependencies here
+        var assembly = Assembly.GetEntryAssembly()!;
         services.AddMediatR(config =>
         {
-            config.RegisterServicesFromAssembly(Assembly.GetEntryAssembly()!);
+            config.RegisterServicesFromAssembly(assembly);
             config.AddOpenBehavior(typeof(LoggingBehavior<,>));
             config.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
-        services.AddValidatorsFromAssembly(Assembly.GetEntryAssembly()!);
+        services.AddValidatorsFromAssembly(assembly);
         return services;
     }
 
     public static IServiceCollection AddSwagger(this IServiceCollection services, string description = "")
     {
-        // Add your building blocks dependencies here
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(options =>
         {
@@ -146,6 +151,7 @@ public static class DependencyInjectionExtensions
         var redisConnection = configuration.GetConnectionString("Redis");
         var sqliteConnection = configuration.GetConnectionString("Sqlite");
         var elasticConnection = configuration.GetConnectionString("Elasticsearch");
+        var sqlserverConnection = configuration.GetConnectionString("SqlServer");
 
         if (!string.IsNullOrEmpty(pgConnection))
             healthCheck.AddNpgSql(configuration.GetConnectionString("Postgres")!);
@@ -158,6 +164,9 @@ public static class DependencyInjectionExtensions
 
         if (!string.IsNullOrEmpty(elasticConnection))
             healthCheck.AddElasticsearch(elasticConnection);
+
+        if (!string.IsNullOrEmpty(sqlserverConnection))
+            healthCheck.AddSqlServer(sqlserverConnection);
 
         return services;
     }

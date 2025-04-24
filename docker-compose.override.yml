@@ -55,7 +55,48 @@ services:
     depends_on:
       - elasticsearch
 
+  ordering.api:
+    container_name: ordering.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__ElasticSearch=http://elasticsearch:9200
+    ports:
+      - "6003:8080"
+      - "6063:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    depends_on:
+      - elasticsearch
 
+  healthcheck.web:
+    container_name: healthcheck.web
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - HealthChecksUI__HealthChecks__0__Name=Catalog.API
+      - HealthChecksUI__HealthChecks__0__Uri=http://catalog.api:8080/health
+      - HealthChecksUI__HealthChecks__1__Name=Basket.API
+      - HealthChecksUI__HealthChecks__1__Uri=http://basket.api:8080/health
+      - HealthChecksUI__HealthChecks__2__Name=Discount.Grpc
+      - HealthChecksUI__HealthChecks__2__Uri=http://discount.grpc:8080/health
+      - HealthChecksUI__HealthChecks__3__Name=Ordering.API
+      - HealthChecksUI__HealthChecks__3__Uri=http://ordering.api:8080/health
+    ports:
+      - "6004:8080"
+      - "6064:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    depends_on:
+     - catalog.api
+     - basket.api
+     - discount.grpc
+     - ordering.api
+ 
   catalogdb:
    container_name: catalogdb
    environment:
